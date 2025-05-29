@@ -1,5 +1,6 @@
 import tarfile
 import json
+import requests
 
 def getEnt(path, entType="json"):
     with tarfile.open(path, 'r') as tar:
@@ -12,5 +13,8 @@ def getEnt(path, entType="json"):
                 return data
     raise FileNotFoundError("올바른 엔트리 파일 형식이 아닙니다.")
 
+def getImage(path):
+    return requests.get(path).content
+
 if __name__ == "__main__":
-    print(getEnt("test.ent"))
+    print(getImage("https://playentry.org/lib/entry-js/images/media/entrybot1.svg"))
